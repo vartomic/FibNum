@@ -4,7 +4,7 @@ struct Fib {
 
     int size;
 
-    int *nums[100]{new int{size}};
+    int nums[100];
 
     char sym;
 };
@@ -18,13 +18,12 @@ int createFib(Fib &fib, int size, char sym) {
     int num1 = 0;
     int num2 = 1;
     
-    for (int i = 0; i < size; i++) {
-        
+    for (int i = 0; i <= size; i++) {
 
+        fib.nums[i] = num_next;
 
         num_next = num1 + num2;
-        std::cout << fib.nums << '\n';
-        //std::cout << num_next << '\n';
+
         num1 = num2;
         num2 = num_next;
     }
@@ -34,6 +33,11 @@ int createFib(Fib &fib, int size, char sym) {
 void drawFib(Fib fib, int limit) {
     for (int i = 0; i < limit; i++) {
 
+        int* ptr = &fib.nums[i];
+
+        std::cout << std::string(fib.nums[i], '*') << fib.nums[i] << std::endl;
+
+        *ptr = fib.nums[i+1];
     }
 }
 
@@ -41,8 +45,8 @@ int main() {
 
     Fib fib;
 
-    createFib(fib, 5, '*');
-    //drawFib(fib, 70);
+    createFib(fib, 16, '*');
+    drawFib(fib, 10);
     return 0;
 }
 
