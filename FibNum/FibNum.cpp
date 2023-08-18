@@ -30,7 +30,7 @@ int createFib(Fib &fib, int size, char sym) {
     return 0;
 }
 
-void drawFib(Fib fib, int limit) {
+void drawFib(Fib &fib, int limit) {
     for (int i = 0; i < limit; i++) {
 
         int* ptr = &fib.nums[i];
