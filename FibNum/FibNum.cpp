@@ -9,18 +9,22 @@ struct Fib {
     char sym;
 };
 
-int createFib(Fib &fib, int size, char sym) {
-    
+Fib* fabricFib(int size, char sym) {
+    Fib fib;
     fib.size = size;
+    fib.nums = new int[fib.size];
     fib.sym = sym;
+    return &fib;
+}
+
+int createFib(Fib &fib) {
+    
 
     int num_next = 1;
     int num1 = 0;
     int num2 = 1;
-
-    fib.nums = new int[100];
     
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i <= fib.size; i++) {
 
         fib.nums[i] = num_next;
      
@@ -50,10 +54,10 @@ void drawFib(Fib &fib, int limit) {
 
 int main() {
 
-    Fib fib;
+    Fib* fib = fabricFib(7, '*');
 
-    createFib(fib, 7, '*');
-    drawFib(fib, 70);
+    createFib(*fib);
+    drawFib(*fib, 70);
     return 0;
 }
 
